@@ -5,7 +5,6 @@ screen = turtle.Screen()
 screen.title("U.S. States Game")
 screen.addshape("blank_states_img.gif")
 turtle.shape("blank_states_img.gif")
-missing_states = []
 
 
 def write_on_map(ans, x, y):
@@ -19,16 +18,13 @@ def write_on_map(ans, x, y):
 game_is_on = True
 user_score = 0
 states_data = pandas.read_csv("50_states.csv")
-states_list = states_data["state"].to_list()
-print(states_list)
+states_list = states_data["state"].to_list()    
 gtitle = ""
 guessed_list = []
 
 
 def generate_missing():
-    for state in states_list:
-        if state not in guessed_list:
-            missing_states.append(state)
+    missing_states = [states for states in states_list if states not in guessed_list]
     missing_dict = {
         "State Names": missing_states
     }
